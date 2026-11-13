@@ -1,128 +1,211 @@
-# Telegram to Google Drive Manager
+# ☁️ Telegram to Google Drive Manager
 
 <p align="center">
-  <b>A Streamlit application to transfer Telegram media directly to Google Drive.</b>
+  <img src="assets/logo.png" alt="TG Drive Manager Logo" width="650">
 </p>
 
 <p align="center">
-  Browse Telegram chats, select media files, and upload them to Google Drive using chunked streaming — without downloading the complete files to your local computer.
+  <b>Transfer your Telegram media directly to Google Drive.</b>
+  <br>
+  Browse chats, select files, and upload them using direct streaming without downloading complete files to your computer.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/Framework-Streamlit-FF4B4B?logo=streamlit" alt="Streamlit">
+  <img src="https://img.shields.io/badge/Telegram-Telethon-26A5E4?logo=telegram" alt="Telegram">
+  <img src="https://img.shields.io/badge/Storage-Google%20Drive-4285F4?logo=googledrive" alt="Google Drive">
+  <img src="https://img.shields.io/badge/Status-Active-success" alt="Status">
 </p>
 
 ---
 
-## About the Project
+## 📌 Overview
 
-**Telegram to Google Drive Manager** is a Python-based web application built with Streamlit. It allows users to connect their Telegram account, browse chats and channels, identify media attachments, select files, and transfer them directly to Google Drive.
+**Telegram to Google Drive Manager** is a Python-based web application built with Streamlit that makes transferring files from Telegram to Google Drive easier.
 
-The application uses Telethon to retrieve Telegram media and the Google Drive API to upload files. Instead of storing entire files locally before uploading, it streams media in chunks to reduce local storage requirements.
+The application connects to a Telegram account, retrieves available chats and channels, detects media attachments, and allows users to select files for uploading.
 
-## Key Features
+Its main feature is a streaming-based transfer mechanism. Instead of downloading an entire video or document to local storage before uploading, the application progressively reads Telegram media and transfers it to Google Drive in chunks.
 
-- **Telegram Integration:** Connect to your Telegram account using the Telegram API.
-- **Chat Browser:** View available Telegram chats and channels.
-- **Media Detection:** Identify videos, photos, and documents in messages.
-- **Media Filtering:** Filter files by Videos, Photos, Documents, or All.
-- **Selective Upload:** Choose specific files for transfer.
-- **Direct Streaming:** Transfer Telegram media to Google Drive without saving the complete file locally.
-- **Chunked Transfers:** Process media in smaller data chunks.
-- **Resumable Upload:** Use Google Drive resumable upload sessions.
-- **Automatic Folder Organization:** Organize uploaded files by chat and media type.
-- **Live Progress:** Monitor upload progress and status.
-- **Background Processing:** Handle uploads separately while keeping the Streamlit interface responsive.
-- **Error Handling:** Display upload failures and error information.
+The application also provides a modern, responsive interface featuring glassmorphism cards, animated gradient buttons, glowing effects, and a teal-green visual theme.
 
-## Technology Stack
+## ✨ Features
+
+### Telegram Integration
+- Connect to Telegram using Telethon.
+- Authenticate using Telegram API credentials.
+- Browse available Telegram chats and channels.
+- Scan recent messages for attachments.
+- Retrieve media information and file details.
+
+### Media Management
+- Detect videos, photos, and documents.
+- Filter attachments by media category.
+- Select individual files.
+- Select all files in a filtered category.
+- View filenames, sizes, and message information.
+
+### Google Drive Integration
+- Authenticate using Google OAuth 2.0.
+- Connect to Google Drive through its API.
+- Upload selected Telegram media.
+- Automatically create destination folders.
+- Organize files by Telegram chat and media type.
+- Display Google Drive file links when available.
+
+### Direct Streaming Technology
+- Stream media directly from Telegram to Google Drive.
+- Process files in smaller chunks.
+- Avoid intentionally saving complete media files locally.
+- Use Google Drive resumable upload sessions.
+- Process transfers in a background worker.
+- Display upload progress and transfer status.
+- Report successful and failed uploads.
+
+### Modern User Interface
+- Custom TG Drive Manager branding.
+- Glassmorphism dashboard design.
+- Animated gradient buttons.
+- Floating cloud and upload animations.
+- Responsive layout.
+- Custom sidebar navigation.
+- Live upload progress indicators.
+- Modern media selection interface.
+
+## 🎨 UI Design and Colour Palette
+
+The interface uses a dark teal and mint-green design inspired by a modern technology dashboard.
+
+| Colour | Hex Code | Usage |
+|---|---|---|
+| Mint | `#C1F6ED` | Light backgrounds and highlights |
+| Deep Teal | `#02353C` | Sidebar and dark sections |
+| Green | `#449342` | Accent elements |
+| Teal | `#2EAF7D` | Buttons and progress indicators |
+| Aqua | `#3FD0C9` | Glowing effects and gradients |
+
+## 🛠️ Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | Python | Core application logic |
-| Streamlit | Web interface |
+| Streamlit | Web application interface |
 | Telethon | Telegram API integration |
-| Google Drive API | Cloud file uploads |
-| Google OAuth 2.0 | Google account authentication |
+| Google Drive API | Cloud file storage |
+| Google OAuth 2.0 | Google authentication |
 | Requests | HTTP resumable uploads |
-| Threading | Background upload processing |
-| Queue | Communication between upload worker and interface |
+| Threading | Background processing |
+| Queue | Transfer progress communication |
+| CSS3 | Custom interface and animations |
 
-## Project Architecture
+## 🏗️ Project Structure
 
 ```text
 TELEGRAM_TO_GDRIVE_MANAGER/
 │
 ├── app.py
-│   └── Streamlit application interface
+│   └── Main Streamlit application
+│
+├── style.css
+│   └── Custom styling, glass effects and animations
+│
+├── assets/
+│   └── logo.png
+│       └── TG Drive Manager branding
 │
 ├── telegram_service.py
-│   └── Telegram authentication,
-│       chat browsing and media streaming
+│   └── Telegram authentication, chat retrieval
+│       and media streaming
 │
 ├── google_drive_service.py
 │   └── Google Drive authentication,
 │       folder management and uploads
 │
+├── .streamlit/
+│   └── config.toml
+│       └── Streamlit theme configuration
+│
 ├── requirements.txt
 │   └── Python dependencies
-│
-├── .env
-│   └── Private API configuration
-│
-├── credentials.json
-│   └── Google OAuth credentials
-│
-├── token.json
-│   └── Google authentication token
-│
-├── telegram_session.session
-│   └── Telegram login session
 │
 ├── .gitignore
 │   └── Excludes private and unnecessary files
 │
-└── README.md
-    └── Project documentation
+├── README.md
+│   └── Project documentation
+│
+├── .env
+│   └── Private API configuration (not committed)
+│
+├── credentials.json
+│   └── Google OAuth credentials (not committed)
+│
+├── token.json
+│   └── Google authentication token (not committed)
+│
+└── telegram_session.session
+    └── Telegram login session (not committed)
 ```
 
-## How It Works
+## ⚙️ How the Application Works
 
-### 1. Connect to Telegram
+### 1. Telegram Authentication
 
-The application uses Telethon and Telegram API credentials to authenticate the user.
+The application uses Telethon to connect to Telegram.
 
-After successful authentication, a local Telegram session is created for subsequent connections.
+The user provides Telegram API credentials obtained from the Telegram developer portal. After authentication, the session is saved locally for subsequent connections.
 
-### 2. Browse Chats and Channels
+### 2. Browse Telegram Chats
 
-The application retrieves available Telegram chats and channels. Users can select a chat and scan its recent messages for media attachments.
+The application retrieves available Telegram chats and channels.
 
-### 3. Identify and Select Media
+Users can select a conversation and specify how many recent messages should be scanned.
 
-The application identifies supported attachments:
+### 3. Detect Media Attachments
+
+The application scans the selected chat and identifies supported attachments:
 
 - Videos
 - Photos
 - Documents
 
-Users can filter the results and select the files they want to upload.
+The detected files are displayed with their filenames, sizes, and message information.
 
-### 4. Connect to Google Drive
+### 4. Select Files
 
-Google OAuth 2.0 is used to authorize access to the user's Google Drive account.
+Users can filter attachments by category and select individual files or all files in the current filter.
 
-The application uses the Google Drive API to create folders and upload files to the selected destination.
+The application calculates the total selected file size before starting the transfer.
 
-### 5. Stream Files Directly
+### 5. Google Drive Authentication
+
+The application uses Google OAuth 2.0 to authorize access to Google Drive.
+
+The Google Drive API is used to create folders and upload files to the configured destination.
+
+### 6. Direct Streaming and Chunked Upload
 
 This is the main functionality of the project.
 
-Instead of downloading an entire file to local storage, the application reads Telegram media progressively and transfers the data through a queue to the Google Drive upload worker.
+Instead of downloading an entire file before uploading it, the application progressively reads media from Telegram.
 
-The data is processed in chunks and sent using Google Drive resumable upload sessions.
+The transfer process works as follows:
 
-### 6. Organize Files Automatically
+1. Retrieve the selected Telegram message.
+2. Read its media progressively.
+3. Process incoming data in chunks.
+4. Pass the chunks through a queue to the upload worker.
+5. Send the data to Google Drive using a resumable upload session.
+6. Report progress to the Streamlit interface.
 
-Uploaded files are arranged into folders based on the Telegram chat and media category.
+This approach reduces the need for local storage compared with downloading complete files before uploading.
 
-Example folder structure:
+### 7. Automatic Folder Organization
+
+Files are organized by Telegram chat and media type.
+
+Example:
 
 ```text
 Google Drive/
@@ -140,24 +223,55 @@ Google Drive/
         └── Documents/
 ```
 
-### 7. Monitor Uploads
+### 8. Upload Monitoring
 
-The application displays upload progress and transfer status.
+The application displays:
 
-A queue is used to communicate progress updates from the background worker to the main Streamlit interface. This avoids updating Streamlit UI elements directly from a background thread.
+- Current file being transferred.
+- Transfer progress percentage.
+- Transferred data size.
+- Transfer speed.
+- Successful uploads.
+- Failed uploads.
+- Google Drive file links when returned.
 
-## Installation and Setup
+The background worker communicates progress through a queue so that Streamlit UI updates happen in the main application thread.
+
+## 🔄 Application Workflow
+
+```mermaid
+flowchart TD
+    A([Start Application]) --> B[Connect to Telegram]
+    B --> C[Load Telegram Chats]
+    C --> D[Select Chat or Channel]
+    D --> E[Scan Recent Messages]
+    E --> F[Detect Media Attachments]
+    F --> G[Filter and Select Files]
+    G --> H[Connect to Google Drive]
+    H --> I[Create Destination Folders]
+    I --> J[Read Telegram Media]
+    J --> K[Stream Data in Chunks]
+    K --> L[Google Drive Resumable Upload]
+    L --> M[Update Progress]
+    M --> N{Upload Successful?}
+    N -->|Yes| O[Display Success and File Link]
+    N -->|No| P[Display Error Details]
+    O --> Q([Transfer Summary])
+    P --> Q
+```
+
+## 💻 Installation and Setup
 
 ### Prerequisites
 
 Make sure you have:
 
-- Python 3.10 or newer
-- Git
-- A Telegram account
-- Telegram API credentials
-- A Google account
-- A Google Cloud project with Google Drive API enabled
+- Python 3.10 or newer.
+- Git installed.
+- A Telegram account.
+- Telegram API credentials.
+- A Google account.
+- A Google Cloud project with Google Drive API enabled.
 
 ### Step 1: Clone the Repository
 
@@ -165,7 +279,7 @@ Make sure you have:
 git clone https://github.com/dEIOnTomsoN/TELEGRAM_TO_GDRIVE_MANAGER.git
 ```
 
-Navigate to the project directory:
+Navigate into the project:
 
 ```bash
 cd TELEGRAM_TO_GDRIVE_MANAGER
@@ -177,7 +291,7 @@ cd TELEGRAM_TO_GDRIVE_MANAGER
 python -m venv venv
 ```
 
-Activate it on Windows:
+Activate the environment on Windows:
 
 ```powershell
 .\venv\Scripts\activate
@@ -198,10 +312,10 @@ pip install -r requirements.txt
 ### Step 4: Configure Telegram API
 
 1. Visit https://my.telegram.org
-2. Log in with your Telegram account.
+2. Log in using your Telegram account.
 3. Open **API Development Tools**.
 4. Create an application.
-5. Copy your API ID and API Hash.
+5. Obtain your API ID and API Hash.
 
 ### Step 5: Configure Google Drive API
 
@@ -210,15 +324,14 @@ pip install -r requirements.txt
 3. Enable the Google Drive API.
 4. Configure the OAuth consent screen.
 5. Create an OAuth Client ID.
-6. Select **Desktop App** as the application type.
+6. Choose **Desktop App** as the application type.
 7. Download the OAuth credentials.
-8. Save the downloaded file as `credentials.json` in the project directory.
-
-If your OAuth application is in Testing mode, add your Google account as a test user.
+8. Save the file as `credentials.json` in the project directory.
+9. If the application is in Testing mode, add your Google account as a test user.
 
 ### Step 6: Configure Environment Variables
 
-Create a `.env` file in the project directory.
+Create a `.env` file in the root directory.
 
 Add the following configuration:
 
@@ -230,9 +343,9 @@ PHONE=YOUR_TELEGRAM_PHONE_NUMBER
 GOOGLE_DRIVE_FOLDER_ID=YOUR_GOOGLE_DRIVE_FOLDER_ID
 ```
 
-Replace the placeholder values with your actual credentials and destination folder ID.
+Replace the placeholder values with your own configuration.
 
-**Never upload your `.env` file or authentication credentials to GitHub.**
+**Never publish your `.env` file or authentication credentials.**
 
 ### Step 7: Run the Application
 
@@ -240,64 +353,37 @@ Replace the placeholder values with your actual credentials and destination fold
 streamlit run app.py
 ```
 
-Open the application in your browser:
+Open your browser:
 
 ```text
 http://localhost:8501
 ```
 
-## Upload Workflow
+## 📂 Configuration
 
-```text
-       Telegram Account
-              |
-              v
-       Browse Chats
-              |
-              v
-       Scan Messages
-              |
-              v
-       Detect Attachments
-              |
-              v
-       Filter and Select Files
-              |
-              v
-       Read Telegram Media
-              |
-              v
-       Stream Data in Chunks
-              |
-              v
-       Google Drive Upload
-              |
-              v
-       Organize Files into Folders
-              |
-              v
-       Display Upload Status
-```
+The application uses the following configuration files:
 
-## Storage and Performance
+| File | Description |
+|---|---|
+| `.env` | Telegram and Google Drive environment configuration |
+| `credentials.json` | Google OAuth client credentials |
+| `token.json` | Google authentication token |
+| `telegram_session.session` | Saved Telegram authentication session |
+| `.streamlit/config.toml` | Streamlit theme settings |
+| `requirements.txt` | Python dependencies |
 
-The application follows a streaming-based transfer approach.
+The private authentication files are generated or configured locally and should not be included in the public repository.
 
-- Does not intentionally save the complete media file locally.
-- Uses chunk-based data processing.
-- Uses a queue to manage communication between the download and upload processes.
-- Uses Google Drive resumable upload sessions.
-- Uses background processing to keep the interface responsive.
+## 🔐 Security and Privacy
 
-Transfer performance depends on the internet connection, Telegram download speed, Google Drive upload speed, and available system resources.
+This application interacts with personal Telegram and Google accounts. Protect all authentication information.
 
-## Security and Privacy
+The following files must never be uploaded to GitHub:
 
-This project requires access to personal Telegram and Google accounts.
-
-The following files contain sensitive information and must not be committed to GitHub:
-
-```text
+```gitignore
+venv/
+__pycache__/
+downloads/
 .env
 credentials.json
 token.json
@@ -305,44 +391,76 @@ token.json
 *.session-journal
 ```
 
-The project includes a `.gitignore` file to exclude private credentials, session files, virtual environments, and temporary downloads.
+Additional recommendations:
 
-**Important:** Never share your Telegram session file, Google OAuth tokens, API Hash, or other private credentials.
+- Never share your Telegram API Hash.
+- Never publish your Telegram session file.
+- Never expose Google OAuth tokens.
+- Keep credentials outside version control.
+- Use your own Telegram and Google accounts when configuring the application.
 
-## Limitations
+## ⚡ Performance and Storage
+
+The application uses progressive media streaming and chunked uploads to avoid intentionally saving complete files locally.
+
+Transfer performance depends on:
+
+- Internet connection speed.
+- Telegram download performance.
+- Google Drive upload performance.
+- File size.
+- Available system resources.
+- Google API and Telegram service limits.
+
+The application still requires an active internet connection throughout the transfer.
+
+## ⚠️ Limitations
 
 - The computer must remain powered on while running the local application.
-- An active internet connection is required during transfers.
+- An active internet connection is required.
 - Telegram and Google authentication must be configured correctly.
-- Upload speed depends on network conditions and service limitations.
-- Interrupted uploads may require retrying; automatic recovery is not guaranteed.
+- OAuth tokens may need to be renewed if expired or revoked.
+- Large transfers may take time depending on network conditions.
+- Interrupted transfers may need to be retried; automatic recovery is not guaranteed.
+- The current application is a local Streamlit web application, not a standalone Android application.
 
-## Future Enhancements
+## 🚀 Future Enhancements
 
-- Android mobile application.
-- Upload history and transfer logs.
-- Automatic retry for failed uploads.
-- Improved pause and resume functionality.
-- Multiple upload management.
-- Upload speed monitoring.
-- Custom Google Drive destination folders.
-- Improved mobile-friendly interface.
+Planned improvements include:
 
-## Author
+- [ ] Android mobile application.
+- [ ] Upload history and transfer logs.
+- [ ] Automatic retry for failed uploads.
+- [ ] Improved pause and resume functionality.
+- [ ] Multiple file upload management.
+- [ ] Better upload speed monitoring.
+- [ ] Configurable Google Drive destinations.
+- [ ] Improved mobile experience.
+- [ ] Transfer queue management.
+
+## 👨‍💻 Author
 
 **Deion Tomson**
 
 Computer Science and Engineering Graduate
 
 - GitHub: https://github.com/dEIOnTomsoN
-- Project Repository: https://github.com/dEIOnTomsoN/TELEGRAM_TO_GDRIVE_MANAGER
+- Repository: https://github.com/dEIOnTomsoN/TELEGRAM_TO_GDRIVE_MANAGER
 
----
+## ⭐ Support
 
+If you find this project useful, consider giving the repository a star on GitHub!
+
+## 📄 License
+
+No open-source license has been specified yet. Add a `LICENSE` file if you decide to distribute this project under a particular license.
 
 ---
 
 <p align="center">
-  <b>Telegram → Google Drive</b><br>
-  Transfer your files without storing the complete files locally.
+  <b>☁️ TG DRIVE MANAGER</b>
+  <br>
+  Telegram → Google Drive
+  <br>
+  <i>Transfer smarter. Store better.</i>
 </p>
